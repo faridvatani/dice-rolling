@@ -1,18 +1,26 @@
 export interface Dice {
-  diceType: number;
-  roll: number;
+  sides: number;
+  quantity: number;
 }
 
-export const rollDice = (diceType: number = 6): number => {
-  return Math.floor(Math.random() * diceType) + 1;
+export interface RollResult {
+  total: number;
+  rolls: number[];
+}
+
+export const rollDice = (sides: number = 6): number => {
+  return Math.floor(Math.random() * sides) + 1;
 };
 
-export const rollMultipleDice = (
-  diceType: number = 6,
-  numberOfDice: number = 1,
-): Dice[] => {
-  return Array.from({ length: numberOfDice }, () => ({
-    diceType,
-    roll: rollDice(diceType),
-  }));
+export const rollDices = (dice: Dice): RollResult => {
+  const rolls: number[] = [];
+  let total = 0;
+
+  for (let i = 0; i < dice.quantity; i++) {
+    const roll = rollDice(dice.sides);
+    rolls.push(roll);
+    total += roll;
+  }
+
+  return { total, rolls };
 };
