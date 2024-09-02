@@ -69,6 +69,9 @@ export default function Home() {
             className="mt-4 text-center"
           >
             <p className="text-lg font-semibold">Total Sum: {result.total}</p>
+            <p className="text-sm text-gray-500">
+              Individual Rolls: {result.rolls.join(", ")}
+            </p>
             <div className="flex flex-col flex-wrap items-center justify-center sm:flex-row gap-5 mt-16">
               {result.rolls.map((roll, index) => (
                 <DiceFace key={index} number={roll} />
