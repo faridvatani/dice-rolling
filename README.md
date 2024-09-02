@@ -1,3 +1,10 @@
+# Dice Rolling
+
+<img src="Screenshot.png" alt="Dice Rolling" >
+
+## Description
+
+This is a simple dice rolling app. It allows you to roll a dice and see the result. It also allows you to roll multiple dice at once and see the result of each dice. The app is built using Next.js and TypeScript.
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
