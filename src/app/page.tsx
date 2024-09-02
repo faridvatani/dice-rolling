@@ -1,13 +1,19 @@
 "use client";
+import { DiceFace } from "@/components/DiceFace";
 import { Dice, rollDices, RollResult } from "@/utils/utils";
 import { useState } from "react";
 
 export default function Home() {
   const [dice, setDice] = useState<Dice>({ sides: 6, quantity: 1 });
   const [result, setResult] = useState<RollResult | null>(null);
+  const [isRolling, setIsRolling] = useState<boolean>(false);
 
   const handleRoll = () => {
-    setResult(rollDices(dice));
+    setIsRolling(true);
+    setTimeout(() => {
+      setResult(rollDices(dice));
+      setIsRolling(false);
+    }, 1000);
   };
 
   return (
@@ -53,13 +59,15 @@ export default function Home() {
       >
         Roll
       </button>
-      {result && <p className="mt-4">Result: {result.total}</p>}
       {result && (
-        <ul className="mt-4">
-          {result.rolls.map((roll, index) => (
-            <li key={index}>{roll}</li>
-          ))}
-        </ul>
+        <div className="mt-4 text-center">
+          <p className="text-lg font-semibold">Result: {result.total}</p>
+          <div className="flex space-x-2">
+            {result.rolls.map((roll, index) => (
+              <DiceFace key={index} number={roll} isRolling={isRolling} />
+            ))}
+          </div>
+        </div>
       )}
     </main>
   );
